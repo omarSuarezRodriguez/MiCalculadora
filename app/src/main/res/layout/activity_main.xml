@@ -5,6 +5,10 @@
     android:id="@+id/contentMain"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingLeft="@dimen/calc_horizontal_margin"
+    android:paddingTop="@dimen/calc_vertical_margin"
+    android:paddingRight="@dimen/calc_horizontal_margin"
+    android:paddingBottom="@dimen/calc_vertical_margin"
     tools:context=".MainActivity">
 
 
@@ -60,7 +64,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/calc_btn_size"
             android:text="@string/calc_btn_point"
-            android:theme="@style/ButtonMD" />
+            android:theme="@style/ButtonMDDark" />
 
 
     </LinearLayout>
@@ -106,11 +110,10 @@
     </LinearLayout>
 
 
-
     <RelativeLayout
+        android:id="@+id/rlOperators"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/rlOperators"
         android:layout_below="@+id/tilInput"
         android:layout_toEndOf="@+id/llMainRight">
 
@@ -118,20 +121,18 @@
             android:id="@+id/btnNine"
             android:layout_width="@dimen/calc_btn_size"
             android:layout_height="@dimen/calc_btn_size"
-            android:text="@string/calc_btn_nine"
-            android:theme="@style/ButtonMD"
             android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"/>
+            android:layout_alignParentTop="true"
+            android:text="@string/calc_btn_nine"
+            android:theme="@style/ButtonMD" />
 
         <Button
             android:id="@+id/btnClear"
             android:layout_width="match_parent"
             android:layout_height="@dimen/calc_btn_size"
+            android:layout_toEndOf="@+id/btnNine"
             android:text="@string/calc_btn_clear"
-            android:theme="@style/ButtonMD"
-            android:layout_toEndOf="@+id/btnNine"/>
-
-
+            android:theme="@style/ButtonMDDanger" />
 
 
         <LinearLayout
@@ -151,10 +152,10 @@
             <Button
                 android:id="@+id/btnDiv"
                 android:layout_width="0dp"
-                android:layout_weight="50"
                 android:layout_height="@dimen/calc_btn_size"
+                android:layout_weight="50"
                 android:text="@string/calc_btn_betwen"
-                android:theme="@style/ButtonMD" />
+                android:theme="@style/ButtonMDDark" />
 
             <Button
                 android:id="@+id/btnMultiplication"
@@ -162,7 +163,8 @@
                 android:layout_height="@dimen/calc_btn_size"
                 android:layout_weight="50"
                 android:text="@string/calc_btn_multi"
-                android:theme="@style/ButtonMD" />
+                android:textAllCaps="false"
+                android:theme="@style/ButtonMDDark" />
 
 
         </LinearLayout>
@@ -184,10 +186,10 @@
             <Button
                 android:id="@+id/btnSub"
                 android:layout_width="0dp"
-                android:layout_weight="50"
                 android:layout_height="@dimen/calc_btn_size"
+                android:layout_weight="50"
                 android:text="@string/calc_btn_sub"
-                android:theme="@style/ButtonMD" />
+                android:theme="@style/ButtonMDDark" />
 
             <Button
                 android:id="@+id/btnSum"
@@ -195,7 +197,7 @@
                 android:layout_height="@dimen/calc_btn_size"
                 android:layout_weight="50"
                 android:text="@string/calc_btn_sum"
-                android:theme="@style/ButtonMD" />
+                android:theme="@style/ButtonMDDark" />
 
 
         </LinearLayout>
@@ -205,13 +207,13 @@
 
 
     <Button
+        android:id="@+id/btnResult"
         android:layout_width="match_parent"
         android:layout_height="@dimen/calc_btn_size"
-        android:id="@+id/btnResult"
-        android:theme="@style/ButtonMD"
         android:layout_below="@+id/rlOperators"
         android:layout_toEndOf="@id/llMainRight"
-        android:text="@string/calc_btn_result"/>
+        android:text="@string/calc_btn_result"
+        android:theme="@style/ButtonMDDarker" />
 
 
 </RelativeLayout>

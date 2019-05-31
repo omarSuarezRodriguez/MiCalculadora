@@ -2,6 +2,9 @@
 <resources>
 
 
+    <dimen name="calc_btn_width">16dp</dimen>
+
+
 
 
 

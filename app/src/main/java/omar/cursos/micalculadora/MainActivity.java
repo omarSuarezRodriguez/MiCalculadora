@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     @OnClick({R.id.btnSeven, R.id.btnFour, R.id.btnOne, R.id.btnEight, R.id.btnFive, R.id.btnTwo,
             R.id.btnNine, R.id.btnSix, R.id.btnThree, R.id.btnPoint, R.id.btnZero})
     public void onClickNumbers(View view) {
-        final String valStr = ((Button)view).getText().toString();
+        final String valStr = ((Button) view).getText().toString();
         switch (view.getId()) {
             case R.id.btnZero:
             case R.id.btnOne:
@@ -44,7 +44,21 @@ public class MainActivity extends AppCompatActivity {
                 etInput.getText().append(valStr);
                 break;
             case R.id.btnPoint:
-                break;
+                final String operacion = etInput.getText().toString();
+
+                final String operador = Metodos.getOperator(operacion);
+
+                final int count = operacion.length() -
+                        operacion.replace(".", "").length();
+
+                if (!operacion.contains(Constantes.POINT) ||
+                        count < 2 && (!operador.equals(Constantes.OPERATOR_NULL))){
+                    etInput.getText().append(valStr);
+                }
+
+
+
+                    break;
         }
     }
 }

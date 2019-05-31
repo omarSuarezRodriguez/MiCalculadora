@@ -18,4 +18,7 @@
     <string name="calc_btn_sub">-</string>
     <string name="calc_btn_sum">+</string>
     <string name="calc_btn_result">=</string>
+
+    <string name="message_exp_incorrect">La expresión es incorrecta.</string>
+
 </resources>

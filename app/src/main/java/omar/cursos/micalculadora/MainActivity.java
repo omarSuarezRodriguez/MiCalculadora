@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         etInput.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                InputMethodManager input = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                InputMethodManager input = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                 input.hideSoftInputFromWindow(view.getWindowToken(), 0);
             }
         });
@@ -68,13 +68,58 @@ public class MainActivity extends AppCompatActivity {
                         operacion.replace(".", "").length();
 
                 if (!operacion.contains(Constantes.POINT) ||
-                        count < 2 && (!operador.equals(Constantes.OPERATOR_NULL))){
+                        count < 2 && (!operador.equals(Constantes.OPERATOR_NULL))) {
                     etInput.getText().append(valStr);
                 }
 
 
-
-                    break;
+                break;
         }
+    }
+
+    @OnClick({R.id.btnClear, R.id.btnDiv, R.id.btnMultiplication, R.id.btnSub, R.id.btnSum, R.id.btnResult})
+    public void onClickControls(View view) {
+        switch (view.getId()) {
+            case R.id.btnClear:
+                etInput.setText("");
+                break;
+            case R.id.btnDiv:
+                break;
+            case R.id.btnMultiplication:
+            case R.id.btnSub:
+            case R.id.btnSum:
+                resolve(false);
+
+                final String operador = ((Button) view).getText().toString();
+                final String operacion = etInput.getText().toString();
+
+                final String ultimoCaracter = operacion.isEmpty()? "" :
+                        operacion.substring(operacion.length() - 1);
+
+                if (operador.equals(Constantes.OPERATOR_SUB)) {
+                    if (operacion.isEmpty() ||
+                            (!(ultimoCaracter.equals(Constantes.OPERATOR_SUB)) &&
+                                    !(ultimoCaracter.equals(Constantes.POINT)))) {
+
+                        etInput.getText().append(operador);
+
+                    }
+                } else {
+                    if (!operacion.isEmpty()  &&
+                    !(ultimoCaracter.equals(Constantes.OPERATOR_SUB)) &&
+                    !(ultimoCaracter.equals(Constantes.POINT))){
+                        etInput.getText().append(operador);
+                    }
+                }
+
+                break;
+            case R.id.btnResult:
+                resolve(true);
+                break;
+        }
+    }
+
+    private void resolve(boolean fromResolve) {
+
     }
 }

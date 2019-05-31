@@ -4,6 +4,7 @@
 
 
     <dimen name="calc_input_height">128dp</dimen>
+
     <dimen name="calc_btn_size">104dp</dimen>
     <dimen name="calc_button_textSize">36sp</dimen>
 </resources>

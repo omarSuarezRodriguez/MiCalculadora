@@ -2,11 +2,13 @@
 <resources>
 
 
-    <dimen name="calc_input_height">96dp</dimen>
-    <dimen name="calc_btn_size">64dp</dimen>
-    <dimen name="calc_btn_textSize">28sp</dimen>
+    <dimen name="calc_input_height">64dp</dimen>
+    <dimen name="calc_btn_size">56dp</dimen>
+    <dimen name="calc_btn_textSize">20sp</dimen>
     <dimen name="calc_horizontal_margin">16dp</dimen>
-    <dimen name="calc_vertical_margin">16dp</dimen>
+    <dimen name="calc_vertical_margin">4dp</dimen>
+
+    <dimen name="calc_btn_width">88dp</dimen>
 
 
 </resources>

@@ -17,14 +17,93 @@
             android:id="@+id/etInput"
             android:layout_width="match_parent"
             android:layout_height="@dimen/calc_input_height"
-            android:hint="@string/calc_hint_input"
-            android:gravity="end|center_vertical"
-            android:inputType="none"
-            android:textIsSelectable="true"
-            android:maxLength="16"
             android:drawableEnd="@drawable/ic_backspace_black_36dp"
-            android:drawablePadding="16dp"/>
+            android:drawablePadding="16dp"
+            android:gravity="end|center_vertical"
+            android:hint="@string/calc_hint_input"
+            android:inputType="none"
+            android:maxLength="16"
+            android:textIsSelectable="true" />
 
     </android.support.design.widget.TextInputLayout>
+
+    <LinearLayout
+        android:id="@+id/llMainLeft"
+        android:layout_width="@dimen/calc_btn_size"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tilInput"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/btnSeven"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/calc_btn_size"
+            android:text="@string/calc_btn_seven"
+            android:theme="@style/ButtonMD" />
+
+        <Button
+            android:id="@+id/btnFour"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/calc_btn_size"
+            android:text="@string/calc_btn_four"
+            android:theme="@style/ButtonMD" />
+
+        <Button
+            android:id="@+id/btnOne"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/calc_btn_size"
+            android:text="@string/calc_btn_one"
+            android:theme="@style/ButtonMD" />
+
+        <Button
+            android:id="@+id/btnPoint"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/calc_btn_size"
+            android:text="@string/calc_btn_point"
+            android:theme="@style/ButtonMD" />
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/llMainRight"
+        android:layout_width="@dimen/calc_btn_size"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tilInput"
+        android:layout_toEndOf="@+id/llMainLeft"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/btnEight"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/calc_btn_size"
+            android:text="@string/calc_btn_eight"
+            android:theme="@style/ButtonMD" />
+
+        <Button
+            android:id="@+id/btnFive"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/calc_btn_size"
+            android:text="@string/calc_btn_five"
+            android:theme="@style/ButtonMD" />
+
+        <Button
+            android:id="@+id/btnTwo"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/calc_btn_size"
+            android:text="@string/calc_btn_two"
+            android:theme="@style/ButtonMD" />
+
+        <Button
+            android:id="@+id/btnZero"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/calc_btn_size"
+            android:text="@string/calc_btn_zero"
+            android:theme="@style/ButtonMD" />
+
+
+    </LinearLayout>
+
 
 </RelativeLayout>

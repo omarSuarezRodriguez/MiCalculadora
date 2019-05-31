@@ -12,8 +12,8 @@
     <string name="calc_btn_nine">9</string>
     <string name="calc_btn_clear">C</string>
     <string name="calc_btn_six">6</string>
-    <string name="calc_btn_betwen">%</string>
-    <string name="calc_btn_multi">X</string>
+    <string name="calc_btn_betwen">÷</string>
+    <string name="calc_btn_multi">x</string>
     <string name="calc_btn_three">3</string>
     <string name="calc_btn_sub">-</string>
     <string name="calc_btn_sum">+</string>

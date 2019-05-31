@@ -2,7 +2,9 @@ package omar.cursos.micalculadora;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -19,6 +21,8 @@ public class MainActivity extends AppCompatActivity {
     EditText etInput;
     @BindView(R.id.contentMain)
     RelativeLayout contentMain;
+
+    private boolean isEditInProgress = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +41,23 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 InputMethodManager input = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                 input.hideSoftInputFromWindow(view.getWindowToken(), 0);
+            }
+        });
+
+        etInput.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                if (motionEvent.getAction() == MotionEvent.ACTION_UP){
+                    if (motionEvent.getRawX() >= (etInput.getRight()-
+                            etInput.getCompoundDrawables()[Constantes.DRAWABLE_RIGHT].getBounds().width())) {
+                        if (etInput.length() > 0) {
+                            final int length = etInput.getText().length();
+                            etInput.getText().delete(length-1, length);
+                        }
+                    }
+                    return true;
+                }
+                return false;
             }
         });
     }
@@ -84,7 +105,6 @@ public class MainActivity extends AppCompatActivity {
                 etInput.setText("");
                 break;
             case R.id.btnDiv:
-                break;
             case R.id.btnMultiplication:
             case R.id.btnSub:
             case R.id.btnSum:
@@ -121,5 +141,22 @@ public class MainActivity extends AppCompatActivity {
 
     private void resolve(boolean fromResolve) {
 
+        Metodos.tryResolve(fromResolve, etInput, new OnResolveCallback() {
+            @Override
+            public void onShowMessage(int errorRes) {
+                showMessage(errorRes);
+            }
+
+            @Override
+            public void onIsEditing() {
+                isEditInProgress = true;
+
+            }
+        });
+
+    }
+
+    private void showMessage(int errorRes) {
+        Snackbar.make(contentMain, errorRes, Snackbar.LENGTH_SHORT).show();
     }
 }

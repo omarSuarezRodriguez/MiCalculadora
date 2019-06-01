@@ -1,12 +1,12 @@
 package omar.cursos.micalculadora;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
@@ -36,23 +36,23 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void configEditText() {
-        etInput.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                InputMethodManager input = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                input.hideSoftInputFromWindow(view.getWindowToken(), 0);
-            }
-        });
+//        etInput.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                InputMethodManager input = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+//                input.hideSoftInputFromWindow(view.getWindowToken(), 0);
+//            }
+//        });
 
         etInput.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
-                if (motionEvent.getAction() == MotionEvent.ACTION_UP){
-                    if (motionEvent.getRawX() >= (etInput.getRight()-
+                if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
+                    if (motionEvent.getRawX() >= (etInput.getRight() -
                             etInput.getCompoundDrawables()[Constantes.DRAWABLE_RIGHT].getBounds().width())) {
                         if (etInput.length() > 0) {
                             final int length = etInput.getText().length();
-                            etInput.getText().delete(length-1, length);
+                            etInput.getText().delete(length - 1, length);
                         }
                     }
                     return true;
@@ -60,6 +60,30 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
+
+
+        etInput.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if (!isEditInProgress &&
+                Metodos.canReplaceOperator(charSequence)){
+                    isEditInProgress = true;
+                    etInput.getText().delete(etInput.getText().length()-2, etInput.getText().length()-1);
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                isEditInProgress = false;
+
+            }
+        });
+
     }
 
 
@@ -113,7 +137,7 @@ public class MainActivity extends AppCompatActivity {
                 final String operador = ((Button) view).getText().toString();
                 final String operacion = etInput.getText().toString();
 
-                final String ultimoCaracter = operacion.isEmpty()? "" :
+                final String ultimoCaracter = operacion.isEmpty() ? "" :
                         operacion.substring(operacion.length() - 1);
 
                 if (operador.equals(Constantes.OPERATOR_SUB)) {
@@ -125,9 +149,9 @@ public class MainActivity extends AppCompatActivity {
 
                     }
                 } else {
-                    if (!operacion.isEmpty()  &&
-                    !(ultimoCaracter.equals(Constantes.OPERATOR_SUB)) &&
-                    !(ultimoCaracter.equals(Constantes.POINT))){
+                    if (!operacion.isEmpty() &&
+                            !(ultimoCaracter.equals(Constantes.OPERATOR_SUB)) &&
+                            !(ultimoCaracter.equals(Constantes.POINT))) {
                         etInput.getText().append(operador);
                     }
                 }
